@@ -12,22 +12,28 @@ public class Block : MonoBehaviour
     private float mouseStartPosX;
     private float mouseStartPosY;
 
-    private float startPosX;
-    private float startPosY;
+    [HideInInspector]
+    public Vector3 PositionInHolder;
+    // private float startPosX;
+    // private float startPosY;
 
     private bool isBeingHeld = false;
     private bool isDraggable = true;
 
+    private Vector3 blockInitialScale;
+    private Vector3 cellInitialScale;
+
     private void Awake()
     {
-
+        blockInitialScale = transform.localScale;
+        cellInitialScale = Cells[0].transform.localScale;
     }
 
     private void Start()
     {
         snapCompleted += SnapController.Instance.OnDragEnded;
-        startPosX = transform.position.x;
-        startPosY = transform.position.y;
+        // startPosX = transform.position.x;
+        // startPosY = transform.position.y;
     }
 
     private void Update()
@@ -50,10 +56,10 @@ public class Block : MonoBehaviour
             mouseStartPosY = mousePos.y - transform.position.y;
 
             //Animate selection
-            transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f);
+            transform.DOScale(2f * blockInitialScale, 0.2f);
             foreach (Cell cell in Cells)
             {
-                cell.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
+                cell.transform.DOScale(0.8f * cellInitialScale, 0.2f);
             }
 
             isBeingHeld = true;
@@ -72,22 +78,23 @@ public class Block : MonoBehaviour
             if (isSnapCompleted)
             {
                 isDraggable = false;
-                Debug.Log("Locked");
+
                 //Snap animation
                 foreach (Cell cell in Cells)
                 {
-                    cell.transform.DOScale(new Vector3(1f, 1f, 1f), 0f);
+                    cell.transform.DOScale(cellInitialScale, 0f);
                 }
+                BlocksHolder.Instance.UpdateHolder();
             }
             else
             {
                 //Restore animation
-                transform.DOScale(new Vector3(1, 1, 1), 0.5f);
+                transform.DOScale(blockInitialScale, 0.2f);
                 foreach (Cell cell in Cells)
                 {
-                    cell.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+                    cell.transform.DOScale(cellInitialScale, 0.2f);
                 }
-                transform.DOMove(new Vector3(startPosX, startPosY, 0), 0.5f);
+                transform.DOMove(PositionInHolder, 0.2f);
             }
         }
     }

@@ -66,8 +66,6 @@ public class SnapController : MonoBehaviour
             }
         }
 
-        Debug.Log(closestDistance);
-
         return (closestDistance <= SnapRange) ? closestSnapPoint : null;
     }
 }
