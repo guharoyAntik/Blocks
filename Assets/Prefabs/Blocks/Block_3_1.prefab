@@ -356,6 +356,13 @@ MonoBehaviour:
   - {fileID: 6179837248815080194}
   - {fileID: 6179837247678857738}
   - {fileID: 6179837247470222456}
+  CellIdx:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  PositionInHolder: {x: 0, y: 0, z: 0}
+  BlockInitialScale: {x: 0, y: 0, z: 0}
+  CellInitialScale: {x: 0, y: 0, z: 0}
 --- !u!61 &6179837249332978982
 BoxCollider2D:
   m_ObjectHideFlags: 0

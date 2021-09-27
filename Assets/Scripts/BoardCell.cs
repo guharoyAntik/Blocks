@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class BoardCell : MonoBehaviour
 {
-    private bool isEmpty = true;
+    private static Color EmptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
+    private static Color FilledCellColor = new Color(1f, 1f, 1f, 1f);
+    private bool isEmpty;
+
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        IsEmpty = true;
+    }
+
     public bool IsEmpty
     {
         get
@@ -14,6 +25,7 @@ public class BoardCell : MonoBehaviour
         set
         {
             isEmpty = value;
+            spriteRenderer.color = (value == true ? EmptyCellColor : FilledCellColor);
         }
     }
 }

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System.Threading.Tasks;
 
 public class SnapController : MonoBehaviour
 {
     public static SnapController Instance;
 
-    public List<BoardCell> snapPoints;
-
     public float SnapRange;
+
+    private float animationTime = 0.2f;
 
     private void Awake()
     {
@@ -20,52 +22,60 @@ public class SnapController : MonoBehaviour
         Instance = this;
     }
 
-    public bool OnDragEnded(Block block)
+    public async Task OnDragEnded(Block block)
     {
         BoardCell[] boardCells = new BoardCell[block.Cells.Length];
 
         for (int i = 0; i < block.Cells.Length; ++i)
         {
-            BoardCell overlappedBoardCell = GetClosestSnapPointTransform(block.Cells[i]);
+            BoardCell overlappedBoardCell = GetClosestSnapPoint(block.Cells[i]);
             if (overlappedBoardCell != null)
             {
                 boardCells[i] = overlappedBoardCell;
             }
-            else
+            else    //Cannot Snap
             {
-                return false;
+                //Return to holder animation
+                Sequence returnSeq = DOTween.Sequence();
+
+                returnSeq.Insert(0, block.transform.DOScale(block.BlockInitialScale, animationTime * 2));
+                returnSeq.Insert(0, block.transform.DOMove(block.PositionInHolder, animationTime * 2));
+                foreach (Cell cell in block.Cells)
+                {
+                    returnSeq.Insert(0, cell.transform.DOScale(block.CellInitialScale, animationTime * 2));
+                }
+                await returnSeq.Play().AsyncWaitForCompletion();
+
+                return;
             }
         }
 
+        //Can Snap        
+        Sequence snapSeq = DOTween.Sequence();
         for (int i = 0; i < block.Cells.Length; ++i)
         {
             block.Cells[i].transform.position = boardCells[i].transform.position;
+
+            snapSeq.Insert(0, block.Cells[i].transform.DOScale(block.CellInitialScale, animationTime));
+        }
+        await snapSeq.Play().AsyncWaitForCompletion();
+
+        //Fill Each board Cell
+        for (int i = 0; i < boardCells.Length; ++i)
+        {
             boardCells[i].IsEmpty = false;
         }
 
-        return true;
+        //Fill gap created in Blocks Holder
+        BlocksHolder.Instance.UpdateHolder();
+
+        //destroy block        
+        return;
     }
 
     //Finds and returns transform of overlapped empty BoardCell if present
-    public BoardCell GetClosestSnapPointTransform(Cell cell)
+    public BoardCell GetClosestSnapPoint(Cell cell)
     {
-        float closestDistance = float.MaxValue;
-        BoardCell closestSnapPoint = null;
-
-        foreach (BoardCell boardCell in snapPoints)
-        {
-            if (boardCell.IsEmpty)
-            {
-                float distance = Vector2.Distance(boardCell.transform.position, cell.transform.position);
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestSnapPoint = boardCell;
-                }
-            }
-        }
-
-        return (closestDistance <= SnapRange) ? closestSnapPoint : null;
+        return Board.Instance.GetOverlappedBoardCell(cell);
     }
 }

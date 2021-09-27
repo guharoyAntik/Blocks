@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading.Tasks;
 
 public class BlocksHolder : MonoBehaviour
 {
@@ -42,23 +43,32 @@ public class BlocksHolder : MonoBehaviour
         }
     }
 
-    int count = 0;
     //Update block holder to check if a space has opened up then fill the space with next block
-    public void UpdateHolder()
+    public async Task UpdateHolder()
     {
+        Sequence updateSeq = DOTween.Sequence();
+
         for (int i = 0; i < blockPositions.Length - 1; ++i)
         {
             if (blocks[i] == null || blocks[i].transform.position != blockPositions[i])
             {
                 blocks[i] = blocks[i + 1];
                 blocks[i + 1] = null;
-                blocks[i].transform.DOMove(blockPositions[i], 1f);
+                updateSeq.Insert(0f, blocks[i].transform.DOMove(blockPositions[i], 1f));
                 blocks[i].PositionInHolder = blockPositions[i];
             }
         }
+
+        await updateSeq.Play().AsyncWaitForCompletion();
+
         if (blocks[blocks.Length - 1] == null)
         {
             SpawnBlock(blocks.Length - 1);
+        }
+
+        for (int i = 0; i < blocks.Length - 1; ++i)
+        {
+            //TODO
         }
     }
 

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading.Tasks;
 
 public class Block : MonoBehaviour
 {
-    public delegate bool DragEndedDelegate(Block block);
-    public DragEndedDelegate snapCompleted;
+    public delegate Task DragEndedDelegate(Block block);
+
+    public DragEndedDelegate dragEnded;
 
     public Cell[] Cells;
     private float mouseStartPosX;
@@ -14,26 +16,24 @@ public class Block : MonoBehaviour
 
     [HideInInspector]
     public Vector3 PositionInHolder;
-    // private float startPosX;
-    // private float startPosY;
 
     private bool isBeingHeld = false;
     private bool isDraggable = true;
 
-    private Vector3 blockInitialScale;
-    private Vector3 cellInitialScale;
+    [HideInInspector]
+    public Vector3 BlockInitialScale;
+    [HideInInspector]
+    public Vector3 CellInitialScale;
 
     private void Awake()
     {
-        blockInitialScale = transform.localScale;
-        cellInitialScale = Cells[0].transform.localScale;
+        BlockInitialScale = transform.localScale;
+        CellInitialScale = Cells[0].transform.localScale;
     }
 
     private void Start()
     {
-        snapCompleted += SnapController.Instance.OnDragEnded;
-        // startPosX = transform.position.x;
-        // startPosY = transform.position.y;
+        dragEnded += SnapController.Instance.OnDragEnded;
     }
 
     private void Update()
@@ -56,45 +56,26 @@ public class Block : MonoBehaviour
             mouseStartPosY = mousePos.y - transform.position.y;
 
             //Animate selection
-            transform.DOScale(2f * blockInitialScale, 0.2f);
+            transform.DOScale(2f * BlockInitialScale, 0.2f);
             foreach (Cell cell in Cells)
             {
-                cell.transform.DOScale(0.8f * cellInitialScale, 0.2f);
+                cell.transform.DOScale(0.8f * CellInitialScale, 0.2f);
             }
 
             isBeingHeld = true;
         }
     }
 
-    private void OnMouseUp()
+    private async void OnMouseUp()
     {
         if (isBeingHeld)
         {
             isBeingHeld = false;
-
-            //check if all cells can fit then snap
-            bool isSnapCompleted = snapCompleted(this);
-
-            if (isSnapCompleted)
+            await dragEnded(this);
+            if (transform.position != PositionInHolder)
             {
-                isDraggable = false;
-
-                //Snap animation
-                foreach (Cell cell in Cells)
-                {
-                    cell.transform.DOScale(cellInitialScale, 0f);
-                }
-                BlocksHolder.Instance.UpdateHolder();
-            }
-            else
-            {
-                //Restore animation
-                transform.DOScale(blockInitialScale, 0.2f);
-                foreach (Cell cell in Cells)
-                {
-                    cell.transform.DOScale(cellInitialScale, 0.2f);
-                }
-                transform.DOMove(PositionInHolder, 0.2f);
+                Board.Instance.CheckAndClear();
+                Destroy(this.gameObject);
             }
         }
     }
