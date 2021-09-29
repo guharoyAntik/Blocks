@@ -7,29 +7,31 @@ public class Board : MonoBehaviour
 {
     public static Board Instance;
 
+    [SerializeField] private GameObject _cellPrefab;
     public int BoardRows;
     public int BoardColumns;
 
     [SerializeField]
-    private BoardCell[] boardCells;
-
-    private BoardCell[,] boardCellsGrid;
+    private BoardCell[] _boardCells;
+    private BoardCell[,] _boardCellsGrid;
 
     private void Awake()
     {
         Instance = this;
-        boardCellsGrid = new BoardCell[BoardRows, BoardColumns];
 
+        //Initializing _boardCellsGrid
+        _boardCellsGrid = new BoardCell[BoardRows, BoardColumns];
         int boardCellIdx = 0;
         for (int i = 0; i < BoardRows; ++i)
         {
             for (int j = 0; j < BoardColumns; ++j)
             {
-                boardCellsGrid[i, j] = boardCells[boardCellIdx++];
+                _boardCellsGrid[i, j] = _boardCells[boardCellIdx++];
             }
         }
     }
 
+    //Checks the board for any combinations and then removes if present
     public void CheckAndClear()
     {
         List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
@@ -40,7 +42,7 @@ public class Board : MonoBehaviour
             int filledInRow = 0;
             for (int j = 0; j < BoardColumns; ++j)
             {
-                if (boardCellsGrid[i, j].IsEmpty)
+                if (_boardCellsGrid[i, j].IsEmpty)
                 {
                     break;
                 }
@@ -62,7 +64,7 @@ public class Board : MonoBehaviour
             int filledInColumn = 0;
             for (int i = 0; i < BoardRows; ++i)
             {
-                if (boardCellsGrid[i, j].IsEmpty)
+                if (_boardCellsGrid[i, j].IsEmpty)
                 {
                     break;
                 }
@@ -78,9 +80,10 @@ public class Board : MonoBehaviour
             }
         }
 
+        //Cells Removal
         foreach (Tuple<int, int> idx in toRemove)
         {
-            boardCellsGrid[idx.Item1, idx.Item2].IsEmpty = true;
+            _boardCellsGrid[idx.Item1, idx.Item2].IsEmpty = true;
         }
     }
 
@@ -91,7 +94,7 @@ public class Board : MonoBehaviour
         float closestDistance = float.MaxValue;
         BoardCell closestSnapPoint = null;
 
-        foreach (BoardCell boardCell in boardCells)
+        foreach (BoardCell boardCell in _boardCells)
         {
             if (boardCell.IsEmpty)
             {
@@ -110,21 +113,30 @@ public class Board : MonoBehaviour
     }
 
     //Checks and returns true if a block can be placed on the board
-    bool CanPlaceBlockOnBoard(Block block)
+    public bool CanPlaceBlockOnBoard(Block block)
     {
+        Cell offsetCell = _cellPrefab.GetComponent<Cell>();
+
         for (int i = 0; i < BoardRows; ++i)
         {
             for (int j = 0; j < BoardColumns; ++j)
             {
-                if (boardCellsGrid[i, j].IsEmpty)
+                if (_boardCellsGrid[i, j].IsEmpty)
                 {
                     bool canBePlaced = true;
-                    float xOffset = boardCellsGrid[i, j].transform.position.x - block.Cells[0].transform.position.x;
-                    float yOffset = boardCellsGrid[i, j].transform.position.y - block.Cells[0].transform.position.y;
+                    Vector3 curBoardCellPos = _boardCellsGrid[i, j].transform.position;
 
-                    for (int blockCellIdx = 1; blockCellIdx < block.Cells.Length; ++blockCellIdx)
+                    //Checking if all cells of block can be placed
+                    for (int blockCellIdx = 0; blockCellIdx < block.Cells.Length; ++blockCellIdx)
                     {
-                        BoardCell overlappedBoardCell = GetOverlappedBoardCell(block.Cells[blockCellIdx]);
+                        //Multiplying by scale difference between block in holder and block on board
+                        float xOffset = (block.Cells[blockCellIdx].transform.position.x - block.Cells[0].transform.position.x) * 2;
+                        float yOffset = (block.Cells[blockCellIdx].transform.position.y - block.Cells[0].transform.position.y) * 2;
+
+                        offsetCell.transform.position = new Vector3(curBoardCellPos.x + xOffset, curBoardCellPos.y + yOffset, 0);
+                        BoardCell overlappedBoardCell = GetOverlappedBoardCell(offsetCell);
+
+
                         if (overlappedBoardCell == null)
                         {
                             canBePlaced = false;

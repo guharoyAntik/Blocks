@@ -10,7 +10,7 @@ public class SnapController : MonoBehaviour
 
     public float SnapRange;
 
-    private float animationTime = 0.2f;
+    private float _animationTime = 0.2f;
 
     private void Awake()
     {
@@ -38,11 +38,11 @@ public class SnapController : MonoBehaviour
                 //Return to holder animation
                 Sequence returnSeq = DOTween.Sequence();
 
-                returnSeq.Insert(0, block.transform.DOScale(block.BlockInitialScale, animationTime * 2));
-                returnSeq.Insert(0, block.transform.DOMove(block.PositionInHolder, animationTime * 2));
+                returnSeq.Insert(0, block.transform.DOScale(block.BlockInitialScale, _animationTime * 2));
+                returnSeq.Insert(0, block.transform.DOMove(block.PositionInHolder, _animationTime * 2));
                 foreach (Cell cell in block.Cells)
                 {
-                    returnSeq.Insert(0, cell.transform.DOScale(block.CellInitialScale, animationTime * 2));
+                    returnSeq.Insert(0, cell.transform.DOScale(block.CellInitialScale, _animationTime * 2));
                 }
                 await returnSeq.Play().AsyncWaitForCompletion();
 
@@ -56,7 +56,7 @@ public class SnapController : MonoBehaviour
         {
             block.Cells[i].transform.position = boardCells[i].transform.position;
 
-            snapSeq.Insert(0, block.Cells[i].transform.DOScale(block.CellInitialScale, animationTime));
+            snapSeq.Insert(0, block.Cells[i].transform.DOScale(block.CellInitialScale, _animationTime));
         }
         await snapSeq.Play().AsyncWaitForCompletion();
 
@@ -67,7 +67,7 @@ public class SnapController : MonoBehaviour
         }
 
         //Fill gap created in Blocks Holder
-        BlocksHolder.Instance.UpdateHolder();
+        Holder.Instance.UpdateHolder();
 
         //destroy block        
         return;

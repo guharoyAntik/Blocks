@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6179837247470222457}
   - component: {fileID: 6179837247470222456}
   - component: {fileID: 5231771251320601200}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Cell (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 6179837247678857739}
   - component: {fileID: 6179837247678857738}
   - component: {fileID: 7279334728265709361}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Cell (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 6179837248815080195}
   - component: {fileID: 6179837248815080194}
   - component: {fileID: 188503774843828384}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Cell (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 6179837249332978983}
   - component: {fileID: 6179837249332978976}
   - component: {fileID: 6179837249332978982}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Block_3_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,6 +356,9 @@ MonoBehaviour:
   - {fileID: 6179837248815080194}
   - {fileID: 6179837247678857738}
   - {fileID: 6179837247470222456}
+  PositionInHolder: {x: 0, y: 0, z: 0}
+  BlockInitialScale: {x: 0, y: 0, z: 0}
+  CellInitialScale: {x: 0, y: 0, z: 0}
 --- !u!61 &6179837249332978982
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BoardCell : MonoBehaviour
 {
-    private static Color EmptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
-    private static Color FilledCellColor = new Color(1f, 1f, 1f, 1f);
-    private bool isEmpty;
+    private static Color _emptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
+    private static Color _filledCellColor = new Color(1f, 1f, 1f, 1f);
+    private bool _isEmpty;
 
     private SpriteRenderer spriteRenderer;
 
@@ -20,12 +20,12 @@ public class BoardCell : MonoBehaviour
     {
         get
         {
-            return isEmpty;
+            return _isEmpty;
         }
         set
         {
-            isEmpty = value;
-            spriteRenderer.color = (value == true ? EmptyCellColor : FilledCellColor);
+            _isEmpty = value;
+            spriteRenderer.color = (value == true ? _emptyCellColor : _filledCellColor);
         }
     }
 }

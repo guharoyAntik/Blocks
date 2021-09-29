@@ -8,17 +8,18 @@ public class Block : MonoBehaviour
 {
     public delegate Task DragEndedDelegate(Block block);
 
-    public DragEndedDelegate dragEnded;
+    public DragEndedDelegate DragEnded;
 
     public Cell[] Cells;
-    private float mouseStartPosX;
-    private float mouseStartPosY;
+    private float _mouseStartPosX;
+    private float _mouseStartPosY;
 
     [HideInInspector]
     public Vector3 PositionInHolder;
 
-    private bool isBeingHeld = false;
-    private bool isDraggable = true;
+    private bool _isBeingHeld = false;
+    private bool _isDraggable = true;
+    private bool _isEnabled = true;
 
     [HideInInspector]
     public Vector3 BlockInitialScale;
@@ -33,27 +34,27 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
-        dragEnded += SnapController.Instance.OnDragEnded;
+        DragEnded += SnapController.Instance.OnDragEnded;
     }
 
     private void Update()
     {
-        if (isBeingHeld == true)
+        if (_isBeingHeld == true)
         {
             Vector3 mousePos = GetMousePosition();
 
-            transform.position = new Vector3(mousePos.x - mouseStartPosX, mousePos.y - mouseStartPosY, 0);
+            transform.position = new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY, 0);
         }
     }
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0) && isDraggable)
+        if (Input.GetMouseButtonDown(0) && _isDraggable && _isEnabled)
         {
             Vector3 mousePos = GetMousePosition();
 
-            mouseStartPosX = mousePos.x - transform.position.x;
-            mouseStartPosY = mousePos.y - transform.position.y;
+            _mouseStartPosX = mousePos.x - transform.position.x;
+            _mouseStartPosY = mousePos.y - transform.position.y;
 
             //Animate selection
             transform.DOScale(2f * BlockInitialScale, 0.2f);
@@ -62,16 +63,16 @@ public class Block : MonoBehaviour
                 cell.transform.DOScale(0.8f * CellInitialScale, 0.2f);
             }
 
-            isBeingHeld = true;
+            _isBeingHeld = true;
         }
     }
 
     private async void OnMouseUp()
     {
-        if (isBeingHeld)
+        if (_isBeingHeld && _isEnabled)
         {
-            isBeingHeld = false;
-            await dragEnded(this);
+            _isBeingHeld = false;
+            await DragEnded(this);
             if (transform.position != PositionInHolder)
             {
                 Board.Instance.CheckAndClear();
@@ -89,4 +90,17 @@ public class Block : MonoBehaviour
 
         return mousePos;
     }
+
+    #region Utility Methods
+    public void EnableBlock()
+    {
+        _isEnabled = true;
+    }
+
+    public void DisableBlock()
+    {
+        _isEnabled = false;
+    }
+
+    #endregion
 }
