@@ -35,7 +35,8 @@ public class SnapController : MonoBehaviour
             }
             else    //Cannot Snap
             {
-                //Return to holder animation
+                // Return to holder animation
+                block.DisableBlock();   // Stop interaction with block during animation
                 Sequence returnSeq = DOTween.Sequence();
 
                 returnSeq.Insert(0, block.transform.DOScale(block.BlockInitialScale, _animationTime * 2));
@@ -45,6 +46,7 @@ public class SnapController : MonoBehaviour
                     returnSeq.Insert(0, cell.transform.DOScale(block.CellInitialScale, _animationTime * 2));
                 }
                 await returnSeq.Play().AsyncWaitForCompletion();
+                block.EnableBlock();    // Restore interactibility of block
 
                 return;
             }

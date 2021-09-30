@@ -19,7 +19,6 @@ public class Block : MonoBehaviour
 
     private bool _isBeingHeld = false;
     private bool _isDraggable = true;
-    private bool _isEnabled = true;
 
     [HideInInspector]
     public Vector3 BlockInitialScale;
@@ -49,8 +48,9 @@ public class Block : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0) && _isDraggable && _isEnabled)
+        if (Input.GetMouseButtonDown(0) && _isBeingHeld == false && _isDraggable)
         {
+            _isBeingHeld = true;
             Vector3 mousePos = GetMousePosition();
 
             _mouseStartPosX = mousePos.x - transform.position.x;
@@ -62,14 +62,12 @@ public class Block : MonoBehaviour
             {
                 cell.transform.DOScale(0.8f * CellInitialScale, 0.2f);
             }
-
-            _isBeingHeld = true;
         }
     }
 
     private async void OnMouseUp()
     {
-        if (_isBeingHeld && _isEnabled)
+        if (_isBeingHeld)
         {
             _isBeingHeld = false;
             await DragEnded(this);
@@ -94,12 +92,12 @@ public class Block : MonoBehaviour
     #region Utility Methods
     public void EnableBlock()
     {
-        _isEnabled = true;
+        _isDraggable = true;
     }
 
     public void DisableBlock()
     {
-        _isEnabled = false;
+        _isDraggable = false;
     }
 
     #endregion

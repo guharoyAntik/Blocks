@@ -49,6 +49,10 @@ public class Holder : MonoBehaviour
 
         for (int i = 0; i < _blockPositions.Length - 1; ++i)
         {
+            if (_blocks[i] != null)
+            {
+                _blocks[i].DisableBlock();  // Stop interaction with blocks during animation
+            }
             if (_blocks[i] == null || _blocks[i].transform.position != _blockPositions[i])
             {
                 _blocks[i] = _blocks[i + 1];
@@ -68,9 +72,10 @@ public class Holder : MonoBehaviour
         int validBlocksCount = 0;
         for (int i = 0; i < _blocks.Length - 1; ++i)
         {
-            //check if block can be placed
+            // Check if block can be placed
             bool canPlace = Board.Instance.CanPlaceBlockOnBoard(_blocks[i]);
 
+            // Enable all valid blocks
             if (canPlace == true)
             {
                 _blocks[i].EnableBlock();
