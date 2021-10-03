@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class BoardCell : MonoBehaviour
 {
-    private static Color _emptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
-    private static Color _filledCellColor = new Color(1f, 1f, 1f, 1f);
+    //private static Color _emptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
+    //private static Color _filledCellColor = new Color(1f, 1f, 1f, 1f);
     private bool _isEmpty;
 
-    private SpriteRenderer spriteRenderer;
+    public int FillType;
+
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        IsEmpty = true;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        ClearCell();
+    }
+
+    public void ClearCell()
+    {
+        _isEmpty = true;
+        _spriteRenderer.sprite = CellSprites.Instance.Empty;
+    }
+
+    public void FillCell(int newFillType)
+    {
+        _isEmpty = false;
+        FillType = newFillType;
+        _spriteRenderer.sprite = CellSprites.Instance.FillVariants[FillType];
     }
 
     public bool IsEmpty
@@ -21,11 +40,6 @@ public class BoardCell : MonoBehaviour
         get
         {
             return _isEmpty;
-        }
-        set
-        {
-            _isEmpty = value;
-            spriteRenderer.color = (value == true ? _emptyCellColor : _filledCellColor);
         }
     }
 }

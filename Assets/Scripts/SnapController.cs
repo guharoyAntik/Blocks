@@ -65,11 +65,11 @@ public class SnapController : MonoBehaviour
         //Fill Each board Cell
         for (int i = 0; i < boardCells.Length; ++i)
         {
-            boardCells[i].IsEmpty = false;
+            boardCells[i].FillCell(block.Cells[0].FillType);
         }
 
         //Fill gap created in Blocks Holder
-        Holder.Instance.UpdateHolder();
+        _ = Holder.Instance.UpdateHolder();
 
         //destroy block        
         return;

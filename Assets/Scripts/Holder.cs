@@ -10,7 +10,7 @@ public class Holder : MonoBehaviour
     public static Holder Instance;
 
     [SerializeField]
-    private GameObject[] _blockPrefabs;  //prefabs to instantiate from
+    //private GameObject[] _blockPrefabs;  //prefabs to instantiate from
 
     private Block[] _blocks;        //block gameobjects after instatiating
 
@@ -95,11 +95,15 @@ public class Holder : MonoBehaviour
 
     public void SpawnBlock(int idx)
     {
-        int spawnIdx = Random.Range(0, _blockPrefabs.Length);
-        GameObject spawnedBlock = Instantiate(_blockPrefabs[spawnIdx], _blockPositions[idx], _blockPrefabs[spawnIdx].transform.rotation, gameObject.transform);
+        //int spawnIdx = Random.Range(0, _blockPrefabs.Length);
+        //GameObject spawnedBlock = Instantiate(_blockPrefabs[spawnIdx], _blockPositions[idx], _blockPrefabs[spawnIdx].transform.rotation, gameObject.transform);
+        GameObject spawnedBlock = SpawnManager.Instance.SpawnBlock();
         spawnedBlock.transform.localScale = new Vector3(1, 1, 1);
         spawnedBlock.transform.position = _blockPositions[idx];
         _blocks[idx] = spawnedBlock.GetComponent<Block>();
         _blocks[idx].PositionInHolder = _blockPositions[idx];
+
+        //int fillType = Random.Range(0, CellSprites.Instance.FillVariants.Length);
+        //_blocks[idx].FillBlock(fillType);
     }
 }

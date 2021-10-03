@@ -40,9 +40,18 @@ public class Board : MonoBehaviour
         for (int i = 0; i < BoardRows; ++i)
         {
             int filledInRow = 0;
+            int rowFillType = -1;
             for (int j = 0; j < BoardColumns; ++j)
             {
                 if (_boardCellsGrid[i, j].IsEmpty)
+                {
+                    break;
+                }
+                if (rowFillType == -1)
+                {
+                    rowFillType = _boardCellsGrid[i, j].FillType;
+                }
+                else if (rowFillType != _boardCellsGrid[i, j].FillType)
                 {
                     break;
                 }
@@ -62,9 +71,18 @@ public class Board : MonoBehaviour
         for (int j = 0; j < BoardColumns; ++j)
         {
             int filledInColumn = 0;
+            int colFillType = -1;
             for (int i = 0; i < BoardRows; ++i)
             {
                 if (_boardCellsGrid[i, j].IsEmpty)
+                {
+                    break;
+                }
+                if (colFillType == -1)
+                {
+                    colFillType = _boardCellsGrid[i, j].FillType;
+                }
+                else if (colFillType != _boardCellsGrid[i, j].FillType)
                 {
                     break;
                 }
@@ -81,10 +99,13 @@ public class Board : MonoBehaviour
         }
 
         //Cells Removal
+        //TODO Add sound effects based on number of removed cells
         foreach (Tuple<int, int> idx in toRemove)
         {
-            _boardCellsGrid[idx.Item1, idx.Item2].IsEmpty = true;
+            _boardCellsGrid[idx.Item1, idx.Item2].ClearCell();
         }
+        //Update Score
+        GameManager.Instance.UpdateScore(toRemove.Count);
     }
 
     //Finds and returns overlapped empty BoardCell if present

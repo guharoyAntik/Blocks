@@ -70,7 +70,9 @@ public class Block : MonoBehaviour
         if (_isBeingHeld)
         {
             _isBeingHeld = false;
+            DisableBlock();
             await DragEnded(this);
+            EnableBlock();
             if (transform.position != PositionInHolder)
             {
                 Board.Instance.CheckAndClear();
@@ -98,6 +100,14 @@ public class Block : MonoBehaviour
     public void DisableBlock()
     {
         _isDraggable = false;
+    }
+
+    public void FillBlock(int newFillType)
+    {
+        for (int i = 0; i < Cells.Length; ++i)
+        {
+            Cells[i].SetFillType(newFillType);
+        }
     }
 
     #endregion
