@@ -9,9 +9,6 @@ public class Holder : MonoBehaviour
 
     public static Holder Instance;
 
-    [SerializeField]
-    //private GameObject[] _blockPrefabs;  //prefabs to instantiate from
-
     private Block[] _blocks;        //block gameobjects after instatiating
 
     private Vector3[] _blockPositions;   //fixed positions on board holder    
@@ -25,7 +22,6 @@ public class Holder : MonoBehaviour
 
         int numberOfBlocks = 4;
 
-        // isBlockPositionFilled = new bool[numberOfBlocks];
         _blocks = new Block[numberOfBlocks];
         _blockPositions = new Vector3[numberOfBlocks];
         _blockPositions[0] = new Vector3(-0.6f * width, 0, 0) + transform.position;
@@ -46,6 +42,7 @@ public class Holder : MonoBehaviour
     public async Task UpdateHolder()
     {
         Sequence updateSeq = DOTween.Sequence();
+        float slideInAnimationTime = 0.333f;
 
         for (int i = 0; i < _blockPositions.Length - 1; ++i)
         {
@@ -57,7 +54,7 @@ public class Holder : MonoBehaviour
             {
                 _blocks[i] = _blocks[i + 1];
                 _blocks[i + 1] = null;
-                updateSeq.Insert(0f, _blocks[i].transform.DOMove(_blockPositions[i], 0.5f));
+                updateSeq.Insert(0f, _blocks[i].transform.DOMove(_blockPositions[i], slideInAnimationTime));
                 _blocks[i].PositionInHolder = _blockPositions[i];
             }
         }
@@ -89,21 +86,16 @@ public class Holder : MonoBehaviour
 
         if (validBlocksCount == 0)      // No more moves
         {
-            GameManager.Instance.ShowRestartButton();
+            GameManager.Instance.GameOver();
         }
     }
 
     public void SpawnBlock(int idx)
     {
-        //int spawnIdx = Random.Range(0, _blockPrefabs.Length);
-        //GameObject spawnedBlock = Instantiate(_blockPrefabs[spawnIdx], _blockPositions[idx], _blockPrefabs[spawnIdx].transform.rotation, gameObject.transform);
         GameObject spawnedBlock = SpawnManager.Instance.SpawnBlock();
         spawnedBlock.transform.localScale = new Vector3(1, 1, 1);
         spawnedBlock.transform.position = _blockPositions[idx];
         _blocks[idx] = spawnedBlock.GetComponent<Block>();
         _blocks[idx].PositionInHolder = _blockPositions[idx];
-
-        //int fillType = Random.Range(0, CellSprites.Instance.FillVariants.Length);
-        //_blocks[idx].FillBlock(fillType);
     }
 }

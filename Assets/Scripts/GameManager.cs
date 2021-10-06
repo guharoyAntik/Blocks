@@ -10,23 +10,35 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField]
-    private Button _restartButton;
+    private GameObject _gameOverPanel;
+
+    //private Button _restartButton;
 
     [SerializeField]
     private TextMeshProUGUI _scoreText;
+    [SerializeField]
+    private TextMeshProUGUI _highScoreText;
 
     private int _score;
+    private int _highScore;
 
     private void Awake()
     {
         Instance = this;
-        _score = 0;
         Application.targetFrameRate = 60;
+
+        //Initializing Score
+        _score = 0;
+        _scoreText.text = _score.ToString();
+
+        //Initializing HighScore
+        _highScore = (PlayerPrefs.HasKey("HighScore") ? PlayerPrefs.GetInt("HighScore") : 0);
+        _highScoreText.text = _highScore.ToString();
     }
 
-    public void ShowRestartButton()
+    public void GameOver()
     {
-        _restartButton.gameObject.SetActive(true);
+        _gameOverPanel.SetActive(true);
     }
 
     public void RestartGame()
@@ -36,15 +48,26 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(int clearedCells)
     {
+        int scoreUpdate = Random.Range(2, 4);
+
         int x = clearedCells * clearedCells;
 
         if (x % 10 != 0)
         {
             x = ((x / 10) + 1) * 10;
         }
-        _score += x;
+        scoreUpdate += x;
+
+        _score += scoreUpdate;
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            //_highScoreText.text = _highScore.ToString();
+            PlayerPrefs.SetInt("HighScore", _highScore);
+        }
 
 
+        //slide numbers
         _scoreText.text = _score.ToString();
     }
 }

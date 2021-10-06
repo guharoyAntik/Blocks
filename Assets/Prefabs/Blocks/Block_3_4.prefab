@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ca2015b60876c45bfc9a445eb3fd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FillType: 0
 --- !u!212 &907594022414410851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ca2015b60876c45bfc9a445eb3fd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FillType: 0
 --- !u!212 &7471478242430337964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ca2015b60876c45bfc9a445eb3fd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FillType: 0
 --- !u!212 &1334392213282504483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -310,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6179837249332978983}
   - component: {fileID: 6179837249332978976}
-  - component: {fileID: 6179837249332978982}
+  - component: {fileID: -8691160098093071397}
   m_Layer: 0
   m_Name: Block_3_4
   m_TagString: Untagged
@@ -359,8 +362,8 @@ MonoBehaviour:
   PositionInHolder: {x: 0, y: 0, z: 0}
   BlockInitialScale: {x: 0, y: 0, z: 0}
   CellInitialScale: {x: 0, y: 0, z: 0}
---- !u!61 &6179837249332978982
-BoxCollider2D:
+--- !u!58 &-8691160098093071397
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -373,15 +376,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.7071
