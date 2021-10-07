@@ -98,6 +98,60 @@ public class Board : MonoBehaviour
             }
         }
 
+        /*
+        //Diagonal check 1     
+        for (int i = 0, colFillType = -1; i < BoardRows; ++i)
+        {
+            if (_boardCellsGrid[i, i].IsEmpty)
+            {
+                break;
+            }
+            if (colFillType == -1)
+            {
+                colFillType = _boardCellsGrid[i, i].FillType;
+            }
+            else if (colFillType != _boardCellsGrid[i, i].FillType)
+            {
+                break;
+            }
+
+            //all diagonal elements match
+            if (i == BoardRows - 1)
+            {
+                for (int j = 0; j < BoardRows; ++j)
+                {
+                    toRemove.Add(new Tuple<int, int>(j, j));
+                }
+            }
+        }
+
+        //Diagonal check 2     
+        for (int i = 0, colFillType = -1; i < BoardRows; ++i)
+        {
+            if (_boardCellsGrid[i, (BoardRows - 1) - i].IsEmpty)
+            {
+                break;
+            }
+            if (colFillType == -1)
+            {
+                colFillType = _boardCellsGrid[i, (BoardRows - 1) - i].FillType;
+            }
+            else if (colFillType != _boardCellsGrid[i, (BoardRows - 1) - i].FillType)
+            {
+                break;
+            }
+
+            //all diagonal elements match
+            if (i == BoardRows - 1)
+            {
+                for (int j = 0; j < BoardRows; ++j)
+                {
+                    toRemove.Add(new Tuple<int, int>(j, (BoardRows - 1) - j));
+                }
+            }
+        }
+        */
+
         //Cells Removal
         //TODO Add sound effects based on number of removed cells
         foreach (Tuple<int, int> idx in toRemove)

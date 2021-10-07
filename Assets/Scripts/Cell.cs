@@ -24,4 +24,14 @@ public class Cell : MonoBehaviour
         FillType = newFillType;
         _spriteRenderer.sprite = CellSprites.Instance.FillVariants[FillType];
     }
+
+    public void DimCell()
+    {
+        _spriteRenderer.color = Color.gray;
+    }
+
+    public void BrightenCell()
+    {
+        _spriteRenderer.color = Color.white;
+    }
 }

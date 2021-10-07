@@ -76,11 +76,13 @@ public class Holder : MonoBehaviour
             if (canPlace == true)
             {
                 _blocks[i].EnableBlock();
+                _blocks[i].BrightenBlock();
                 validBlocksCount++;
             }
             else
             {
                 _blocks[i].DisableBlock();
+                _blocks[i].DimBlock();
             }
         }
 

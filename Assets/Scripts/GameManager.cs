@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void UpdateScore(int clearedCells)
+    private int GetScoreChange(int clearedCells)
     {
         int scoreUpdate = Random.Range(2, 4);
 
@@ -58,16 +58,38 @@ public class GameManager : MonoBehaviour
         }
         scoreUpdate += x;
 
-        _score += scoreUpdate;
+        return scoreUpdate;
+    }
+
+    public void UpdateScore(int clearedCells)
+    {
+        int scoreUpdate = GetScoreChange(clearedCells);
+
+        StartCoroutine(SlideScore(_score + scoreUpdate));
+    }
+
+    IEnumerator SlideScore(int target)
+    {
+        int scoreDelta;
+        float timeDelta = Time.deltaTime;
+        float animationTime = 1f;
+
+        scoreDelta = (int)System.Math.Ceiling((target * timeDelta) / animationTime);
+        while (_score < target)
+        {
+            _score += scoreDelta;
+            if (_score > target)
+            {
+                _score = target;
+            }
+            _scoreText.text = _score.ToString();
+            yield return new WaitForSeconds(timeDelta);
+        }
+
         if (_score > _highScore)
         {
             _highScore = _score;
-            //_highScoreText.text = _highScore.ToString();
             PlayerPrefs.SetInt("HighScore", _highScore);
         }
-
-
-        //slide numbers
-        _scoreText.text = _score.ToString();
     }
 }

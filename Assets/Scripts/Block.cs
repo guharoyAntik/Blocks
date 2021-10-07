@@ -110,5 +110,21 @@ public class Block : MonoBehaviour
         }
     }
 
+    public void DimBlock()
+    {
+        for (int i = 0; i < Cells.Length; ++i)
+        {
+            Cells[i].DimCell();
+        }
+    }
+
+    public void BrightenBlock()
+    {
+        for (int i = 0; i < Cells.Length; ++i)
+        {
+            Cells[i].BrightenCell();
+        }
+    }
+
     #endregion
 }
