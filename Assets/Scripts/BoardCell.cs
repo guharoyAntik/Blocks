@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class BoardCell : MonoBehaviour
 {
-    //private static Color _emptyCellColor = new Color(0.5294118f, 0.5294118f, 0.5294118f, 1f);
-    //private static Color _filledCellColor = new Color(1f, 1f, 1f, 1f);
-    private bool _isEmpty;
+    private bool _isEmpty = true;
 
+    [HideInInspector]
     public int FillType;
 
     private SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    private Animator _animator;
 
     private void Awake()
     {
@@ -24,8 +25,19 @@ public class BoardCell : MonoBehaviour
 
     public void ClearCell()
     {
+        if (_isEmpty == false)
+        {
+            if (FillType == 0)
+            {
+                _animator.Play("cell-blue-remove");
+            }
+            else if (FillType == 1)
+            {
+                _animator.Play("cell-red-remove");
+            }
+        }
         _isEmpty = true;
-        _spriteRenderer.sprite = CellSprites.Instance.Empty;
+        _spriteRenderer.sprite = null;
     }
 
     public void FillCell(int newFillType)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 056b713ead213784d85a06de0ee1b934
+guid: 7e6110bd4b90c0440a199aa44d5e3991
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Visitor TT2 BRK
+  - PixelSplitter
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

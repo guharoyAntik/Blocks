@@ -11,6 +11,11 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
     }
 

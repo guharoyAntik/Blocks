@@ -34,4 +34,14 @@ public class Cell : MonoBehaviour
     {
         _spriteRenderer.color = Color.white;
     }
+
+    public void MoveForward()
+    {
+        _spriteRenderer.sortingOrder++;
+    }
+
+    public void MoveBackward()
+    {
+        _spriteRenderer.sortingOrder--;
+    }
 }

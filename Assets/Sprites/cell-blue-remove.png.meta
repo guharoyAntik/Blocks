@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: 2303af94c2c525a40a5236e5ab75ab53
+guid: d8282804f51878e41ba51c396ab44ddc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4282795352628127037
-    second: ui-9_top_left
+      213: -7060552344139094082
+    second: cell-blue-remove_0
   - first:
-      213: 7659313745192738778
-    second: ui-9_top
+      213: 2116018330319604061
+    second: cell-blue-remove_1
   - first:
-      213: 5331930063451638336
-    second: ui-9_top_right
+      213: -2409097008585763323
+    second: cell-blue-remove_2
   - first:
-      213: -488872015092400333
-    second: ui-9_left
+      213: 2395086621304758859
+    second: cell-blue-remove_3
   - first:
-      213: 5530502729393928102
-    second: ui-9_center
+      213: -5734906026871681391
+    second: cell-blue-remove_4
   - first:
-      213: 1897405215865523411
-    second: ui-9_right
+      213: 3589692651645393571
+    second: cell-blue-remove_5
   - first:
-      213: -3644190633109174667
-    second: ui-9_bottom_left
-  - first:
-      213: 2532555626284477996
-    second: ui-9_bottom
-  - first:
-      213: -8771357187434529158
-    second: ui-9_bottom_right
+      213: 7666875645515691784
+    second: cell-blue-remove_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -68,13 +62,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
-  spriteBorder: {x: 14, y: 14, z: 14, w: 14}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -142,139 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui-9_top_left
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 23
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ca18e861547094c0800000000000000
-      internalID: -4282795352628127037
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_top
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 23
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: adfda7d35495b4a60800000000000000
-      internalID: 7659313745192738778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_top_right
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 23
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04ac2479422def940800000000000000
-      internalID: 5331930063451638336
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_left
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 12
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33fb9cf0e7d2739f0800000000000000
-      internalID: -488872015092400333
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_center
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 12
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a77ad63eea40cc40800000000000000
-      internalID: 5530502729393928102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_right
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 12
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3dc43aeadffe45a10800000000000000
-      internalID: 1897405215865523411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ui-9_bottom_left
+      name: cell-blue-remove_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 11
-        height: 11
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 576c8bb4deb3d6dc0800000000000000
-      internalID: -3644190633109174667
+      spriteID: eb7a9892d01e30e90800000000000000
+      internalID: -7060552344139094082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-9_bottom
+      name: cell-blue-remove_1
       rect:
         serializedVersion: 2
-        x: 12
+        x: 32
         y: 0
-        width: 10
-        height: 11
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2e6a9e8ce1752320800000000000000
-      internalID: 2532555626284477996
+      spriteID: d594ae4d57b9d5d10800000000000000
+      internalID: 2116018330319604061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-9_bottom_right
+      name: cell-blue-remove_2
       rect:
         serializedVersion: 2
-        x: 23
+        x: 64
         y: 0
-        width: 11
-        height: 11
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,8 +192,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7e35e45c11e54680800000000000000
-      internalID: -8771357187434529158
+      spriteID: 5061acdd80b219ed0800000000000000
+      internalID: -2409097008585763323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell-blue-remove_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b422925a79e0d3120800000000000000
+      internalID: 2395086621304758859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell-blue-remove_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e01187a558960b0800000000000000
+      internalID: -5734906026871681391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell-blue-remove_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa572a927621d130800000000000000
+      internalID: 3589692651645393571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cell-blue-remove_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8077e0c57c6366a60800000000000000
+      internalID: 7666875645515691784
       vertices: []
       indices: 
       edges: []

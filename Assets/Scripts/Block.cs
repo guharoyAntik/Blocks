@@ -61,6 +61,7 @@ public class Block : MonoBehaviour
             foreach (Cell cell in Cells)
             {
                 cell.transform.DOScale(0.8f * CellInitialScale, 0.2f);
+                cell.MoveForward();
             }
         }
     }

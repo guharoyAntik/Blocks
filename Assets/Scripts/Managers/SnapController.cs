@@ -46,6 +46,10 @@ public class SnapController : MonoBehaviour
                     returnSeq.Insert(0, cell.transform.DOScale(block.CellInitialScale, _animationTime * 2));
                 }
                 await returnSeq.Play().AsyncWaitForCompletion();
+                foreach (Cell cell in block.Cells)
+                {
+                    cell.MoveBackward();
+                }
                 block.EnableBlock();    // Restore interactibility of block
 
                 return;

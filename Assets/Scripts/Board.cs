@@ -17,6 +17,11 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
 
         //Initializing _boardCellsGrid
@@ -27,6 +32,18 @@ public class Board : MonoBehaviour
             for (int j = 0; j < BoardColumns; ++j)
             {
                 _boardCellsGrid[i, j] = _boardCells[boardCellIdx++];
+            }
+        }
+    }
+
+    //Empties board for a fresh start
+    public void ClearBoard()
+    {
+        for (int i = 0; i < BoardRows; ++i)
+        {
+            for (int j = 0; j < BoardColumns; ++j)
+            {
+                _boardCellsGrid[i, j].ClearCell();
             }
         }
     }
@@ -154,6 +171,10 @@ public class Board : MonoBehaviour
 
         //Cells Removal
         //TODO Add sound effects based on number of removed cells
+        // foreach (Tuple<int, int> idx in toRemove)
+        // {
+        //     _boardCellsGrid[idx.Item1, idx.Item2].GetComponent<Animator>().Play("Remove");
+        // }
         foreach (Tuple<int, int> idx in toRemove)
         {
             _boardCellsGrid[idx.Item1, idx.Item2].ClearCell();

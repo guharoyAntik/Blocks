@@ -15,6 +15,11 @@ public class Holder : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
         Instance = this;
 
         float y = transform.position.y;

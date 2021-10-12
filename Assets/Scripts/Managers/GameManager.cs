@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject _gameOverPanel;
 
-    //private Button _restartButton;
-
     [SerializeField]
     private TextMeshProUGUI _scoreText;
     [SerializeField]
@@ -24,6 +22,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
         Instance = this;
         Application.targetFrameRate = 60;
 
@@ -43,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private int GetScoreChange(int clearedCells)
