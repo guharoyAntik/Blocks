@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+using DG.Tweening;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField]
+    private Image _screenFadePanel;
+    private float _fadeTime = 0.5f / 2;
 
     private void Awake()
     {
@@ -30,19 +33,34 @@ public class GameManager : MonoBehaviour
 
     #region Open Scenes
 
-    public void MainMenu()
+    public async void MainMenu()
     {
+        //add scene fade
+        _screenFadePanel.gameObject.SetActive(true);
+        await _screenFadePanel.DOFade(1f, _fadeTime).AsyncWaitForCompletion();
         SceneManager.LoadScene(0);
+        await _screenFadePanel.DOFade(0f, _fadeTime).AsyncWaitForCompletion();
+        _screenFadePanel.gameObject.SetActive(false);
     }
 
-    public void SettingsMenu()
+    public async void SettingsMenu()
     {
+        //add scene fade
+        _screenFadePanel.gameObject.SetActive(true);
+        await _screenFadePanel.DOFade(1f, _fadeTime).AsyncWaitForCompletion();
         SceneManager.LoadScene(1);
+        await _screenFadePanel.DOFade(0f, _fadeTime).AsyncWaitForCompletion();
+        _screenFadePanel.gameObject.SetActive(false);
     }
 
-    public void PlayGame()
+    public async void PlayGame()
     {
+        //add scene fade
+        _screenFadePanel.gameObject.SetActive(true);
+        await _screenFadePanel.DOFade(1f, _fadeTime).AsyncWaitForCompletion();
         SceneManager.LoadScene(2);
+        await _screenFadePanel.DOFade(0f, _fadeTime).AsyncWaitForCompletion();
+        _screenFadePanel.gameObject.SetActive(false);
     }
 
     #endregion
