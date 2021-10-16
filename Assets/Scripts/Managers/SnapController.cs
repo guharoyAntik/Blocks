@@ -65,6 +65,7 @@ public class SnapController : MonoBehaviour
             snapSeq.Insert(0, block.Cells[i].transform.DOScale(block.CellInitialScale, _animationTime));
         }
         await snapSeq.Play().AsyncWaitForCompletion();
+        SoundManager.Instance.PlayPlaceBlockSound();
 
         //Fill Each board Cell
         for (int i = 0; i < boardCells.Length; ++i)

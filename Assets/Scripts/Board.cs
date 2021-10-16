@@ -170,17 +170,13 @@ public class Board : MonoBehaviour
         */
 
         //Cells Removal
-        //TODO Add sound effects based on number of removed cells
-        // foreach (Tuple<int, int> idx in toRemove)
-        // {
-        //     _boardCellsGrid[idx.Item1, idx.Item2].GetComponent<Animator>().Play("Remove");
-        // }
+        SoundManager.Instance.PlayCellsClearedSound(toRemove.Count);
         foreach (Tuple<int, int> idx in toRemove)
         {
             _boardCellsGrid[idx.Item1, idx.Item2].ClearCell();
         }
         //Update Score
-        GameManager.Instance.UpdateScore(toRemove.Count);
+        ScoreManager.Instance.UpdateScore(toRemove.Count);
     }
 
     //Finds and returns overlapped empty BoardCell if present
