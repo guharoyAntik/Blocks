@@ -6,8 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
 
-    [SerializeField]
-    private GameObject[] _blockPrefabs;  //prefabs to instantiate from
+    [SerializeField] private GameObject[] _blockPrefabs;  //prefabs to instantiate from
 
     private void Awake()
     {

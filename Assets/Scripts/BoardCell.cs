@@ -6,12 +6,10 @@ public class BoardCell : MonoBehaviour
 {
     private bool _isEmpty = true;
 
-    [HideInInspector]
-    public int FillType;
+    [HideInInspector] public int FillType;
 
     private SpriteRenderer _spriteRenderer;
-    [SerializeField]
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     private void Awake()
     {

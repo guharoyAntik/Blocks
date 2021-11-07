@@ -21,22 +21,15 @@ public class SoundManager : MonoBehaviour
     }
 
     [Header("Audio Sources")]
-    [SerializeField]
-    private AudioSource _uiSounds;
+    [SerializeField] private AudioSource _uiSounds;
 
-    [SerializeField]
-    private AudioSource _gameSounds;
+    [SerializeField] private AudioSource _gameSounds;
 
     [Header("Audio Clips")]
-    [SerializeField]
-    private AudioClip _buttonClickClip;
-    [SerializeField]
-    private AudioClip _gameOverClip;
-    [SerializeField]
-    private AudioClip _placeBlockClip;
-
-    [SerializeField]
-    private AudioClip[] _cellsClearedClips;
+    [SerializeField] private AudioClip _buttonClickClip;
+    [SerializeField] private AudioClip _gameOverClip;
+    [SerializeField] private AudioClip _placeBlockClip;
+    [SerializeField] private AudioClip[] _cellsClearedClips;
 
     private void Awake()
     {

@@ -1,18 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    [SerializeField]
-    private TextMeshProUGUI _scoreText;
-    [SerializeField]
-    private TextMeshProUGUI _highScoreText;
+    [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _highScoreText;
 
+    private int[] _scoreLevels = { 50, 200, 1000, 10000, 100000 };
     private int _score;
     private int _highScore;
 
@@ -36,25 +35,52 @@ public class ScoreManager : MonoBehaviour
         _highScoreText.text = _highScore.ToString();
     }
 
-    private int GetScoreChange(int clearedCells)
+    private int GetScoreUpdate(int clearedCells)
     {
-        int scoreUpdate = Random.Range(2, 4);
-
-        int x = clearedCells * clearedCells;
-
-        if (x % 10 != 0)
+        if (clearedCells == 0)
         {
-            x = ((x / 10) + 1) * 10;
+            return Random.Range(3, 7);
         }
-        scoreUpdate += x;
 
-        return scoreUpdate;
+        if (clearedCells == 4)
+        {
+            return _scoreLevels[0];
+        }
+        else if (clearedCells == 7 || clearedCells == 8)
+        {
+            return _scoreLevels[1];
+        }
+        else if (clearedCells == 9 || clearedCells == 10)
+        {
+            return _scoreLevels[2];
+        }
+        else if (clearedCells == 11 || clearedCells == 12)
+        {
+            return _scoreLevels[3];
+        }
+
+        Debug.Log("Invaid, cleared cells = " + clearedCells);
+        return 0;
     }
 
-    public void UpdateScore(int clearedCells)
+    public async void UpdateScore(string clearedColor, int clearedCells)
     {
-        int scoreUpdate = GetScoreChange(clearedCells);
+        int scoreUpdate = GetScoreUpdate(clearedCells);
+        int scoreLevel = -1;
 
+        for (int i = 0; i < _scoreLevels.Length; ++i)
+        {
+            if (scoreUpdate == _scoreLevels[i])
+            {
+                scoreLevel = i;
+            }
+        }
+
+        // await InGameUIManager.Instance.ShowFlashMessage("red", 2);   //testing
+        if (scoreLevel > 0)
+        {
+            await InGameUIManager.Instance.ShowFlashMessage(clearedColor, scoreLevel - 1);
+        }
         StartCoroutine(SlideScore(_score + scoreUpdate));
     }
 

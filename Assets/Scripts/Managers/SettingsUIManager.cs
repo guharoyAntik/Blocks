@@ -7,11 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class SettingsUIManager : MonoBehaviour
 {
-    [SerializeField]
-    private Image _toggleSoundImage;
+    [SerializeField] private Image _toggleSoundImage;
 
-    [SerializeField]
-    private TextMeshProUGUI _toggleSoundText;
+    [SerializeField] private TextMeshProUGUI _toggleSoundText;
 
     private void Start()
     {

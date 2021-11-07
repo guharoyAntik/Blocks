@@ -63,7 +63,7 @@ public class Holder : MonoBehaviour
                 _blocks[i].PositionInHolder = _blockPositions[i];
             }
         }
-
+        updateSeq.SetEase(Ease.InOutSine);
         await updateSeq.Play().AsyncWaitForCompletion();
 
         if (_blocks[_blocks.Length - 1] == null)

@@ -14,16 +14,13 @@ public class Block : MonoBehaviour
     private float _mouseStartPosX;
     private float _mouseStartPosY;
 
-    [HideInInspector]
-    public Vector3 PositionInHolder;
+    [HideInInspector] public Vector3 PositionInHolder;
 
     private bool _isBeingHeld = false;
     private bool _isDraggable = true;
 
-    [HideInInspector]
-    public Vector3 BlockInitialScale;
-    [HideInInspector]
-    public Vector3 CellInitialScale;
+    [HideInInspector] public Vector3 BlockInitialScale;
+    [HideInInspector] public Vector3 CellInitialScale;
 
     private void Awake()
     {
@@ -42,7 +39,8 @@ public class Block : MonoBehaviour
         {
             Vector3 mousePos = GetMousePosition();
 
-            transform.position = new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY, 0);
+            // transform.position = new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY, 0);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY + 0.25f, 0), 100f * Time.deltaTime);
         }
     }
 

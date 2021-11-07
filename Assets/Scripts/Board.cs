@@ -11,8 +11,7 @@ public class Board : MonoBehaviour
     public int BoardRows;
     public int BoardColumns;
 
-    [SerializeField]
-    private BoardCell[] _boardCells;
+    [SerializeField] private BoardCell[] _boardCells;
     private BoardCell[,] _boardCellsGrid;
 
     private void Awake()
@@ -51,7 +50,7 @@ public class Board : MonoBehaviour
     //Checks the board for any combinations and then removes if present
     public void CheckAndClear()
     {
-        List<Tuple<int, int>> toRemove = new List<Tuple<int, int>>();
+        HashSet<Tuple<int, int>> toRemove = new HashSet<Tuple<int, int>>();
 
         //Row check
         for (int i = 0; i < BoardRows; ++i)
@@ -115,7 +114,6 @@ public class Board : MonoBehaviour
             }
         }
 
-        /*
         //Diagonal check 1     
         for (int i = 0, colFillType = -1; i < BoardRows; ++i)
         {
@@ -167,16 +165,26 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        */
 
         //Cells Removal
         SoundManager.Instance.PlayCellsClearedSound(toRemove.Count);
+        int fillType = -1;
         foreach (Tuple<int, int> idx in toRemove)
         {
+            fillType = _boardCellsGrid[idx.Item1, idx.Item2].FillType;
             _boardCellsGrid[idx.Item1, idx.Item2].ClearCell();
         }
         //Update Score
-        ScoreManager.Instance.UpdateScore(toRemove.Count);
+        string color = "na";
+        if (fillType == 0)
+        {
+            color = "blue";
+        }
+        else if (fillType == 1)
+        {
+            color = "red";
+        }
+        ScoreManager.Instance.UpdateScore(color, toRemove.Count);
     }
 
     //Finds and returns overlapped empty BoardCell if present
