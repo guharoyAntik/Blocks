@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using TMPro;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class InGameUIManager : MonoBehaviour
     [Header("Game Over Panel")]
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _gameOverOptions;
+
+    [SerializeField] private TextMeshProUGUI _gameOverText;
 
     [Header("Pause Panel")]
     [SerializeField] private GameObject _pausePanel;
@@ -43,14 +46,16 @@ public class InGameUIManager : MonoBehaviour
         _holder.SetActive(false);
 
         //Align game over options
-        float height = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
-        _gameOverOptions.transform.position = new Vector3(0, -2 * height / 3, 0);
+        float screenHeight = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
+        _gameOverOptions.transform.position = new Vector3(0, -2 * screenHeight / 3, 0);
         _score.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
         //Align game over score
-        Vector3 currentScorePos = _score.transform.localPosition;
-        _score.transform.localPosition = new Vector3(currentScorePos.x, Screen.height * 0.5f * 0.5f, currentScorePos.z);
         _board.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        Vector3 currentScorePos = _score.transform.localPosition;
+
+        float boardHeight = _board.GetComponent<RectTransform>().rect.height;
+        _score.transform.position = new Vector3(currentScorePos.x, (boardHeight * 0.5f + _gameOverText.transform.position.y) * 0.5f, currentScorePos.z);
 
         _gameOverPanel.SetActive(true);
     }

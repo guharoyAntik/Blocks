@@ -13,19 +13,11 @@ public class BorderEffects : MonoBehaviour
     private int[] _spriteIdx;
     private int[] _spriteColor;
 
-    private int _blueIdx;
-
     private void Start()
     {
-        _blueIdx = 0;
-
         _spriteIdx = new int[_borderCells.Length];
         for (int i = 0; i < _spriteIdx.Length; ++i)
         {
-            // if ((i + 10) % 30 < 15)
-            // {
-            //     _spriteIdx[i] = _blueSprites.Length / 2;
-            // }
             _spriteIdx[i] = i % _blueSprites.Length;
         }
 
@@ -57,7 +49,6 @@ public class BorderEffects : MonoBehaviour
     {
         for (int cellIdx = 0; cellIdx < _borderCells.Length; ++cellIdx)
         {
-            // if ((_spriteColor[cellIdx] == 0 && _spriteIdx[cellIdx] >= _blueSprites.Length) || (_spriteColor[cellIdx] == 1 && _spriteIdx[cellIdx] >= _redSprites.Length))
             if (_spriteIdx[cellIdx] < 0)
             {
                 _spriteIdx[cellIdx] = (_spriteColor[cellIdx] == 0 ? _blueSprites.Length - 1 : _redSprites.Length - 1);

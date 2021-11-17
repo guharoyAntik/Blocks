@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         Application.targetFrameRate = 60;
-        _font.material.mainTexture.filterMode = FilterMode.Point;
+        // _font.material.mainTexture.filterMode = FilterMode.Point;
         DontDestroyOnLoad(this.gameObject);
     }
 
