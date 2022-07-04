@@ -41,10 +41,4 @@ public class SettingsUIManager : MonoBehaviour
         _toggleSoundImage.color = (SoundManager.Instance.SoundsEnabled ? Color.green : Color.gray);
         _toggleSoundText.text = (SoundManager.Instance.SoundsEnabled ? "SOUNDS ON" : "SOUNDS OFF");
     }
-
-    public void OpenMainMenu()
-    {
-        SoundManager.Instance.PlayButtonClickSound();
-        GameManager.Instance.MainMenu();
-    }
 }

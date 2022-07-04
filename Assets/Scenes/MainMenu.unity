@@ -1187,7 +1187,7 @@ Transform:
   - {fileID: 1695392599}
   - {fileID: 260579720}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &204565398
 GameObject:
@@ -1835,12 +1835,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328295396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 2083008859}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370936748
 GameObject:
@@ -2108,7 +2108,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475400152
 GameObject:
@@ -2883,7 +2883,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709816386
 GameObject:
@@ -3081,7 +3081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &824935917
 GameObject:
@@ -3505,12 +3505,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910688721}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 2083008859}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &910850813
 GameObject:
@@ -3989,15 +3989,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
+    rgba: 4281545523
+  m_fontColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4014,8 +4014,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4077,7 +4077,7 @@ GameObject:
   - component: {fileID: 1020174228}
   - component: {fileID: 1020174227}
   m_Layer: 5
-  m_Name: TutorialButton
+  m_Name: HowToPlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4146,7 +4146,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1020174228}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1830602780}
+        m_TargetAssemblyTypeName: MainMenuUIManager, Assembly-CSharp
+        m_MethodName: OpenHowToPlayMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1020174228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4470,7 +4482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185346290
 GameObject:
@@ -5887,10 +5899,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TUTORIAL
+  m_text: HOW TO PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5914,8 +5926,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5992,7 +6004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754087019
 GameObject:
@@ -6173,7 +6185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1830602780
 MonoBehaviour:
@@ -6321,8 +6333,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SETTINGS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6346,8 +6358,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6686,15 +6698,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
+    rgba: 4281545523
+  m_fontColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6711,8 +6723,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
-  m_fontSizeBase: 84
+  m_fontSize: 110
+  m_fontSizeBase: 110
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7319,7 +7331,10 @@ MonoBehaviour:
   _gameSounds: {fileID: 910688722}
   _buttonClickClip: {fileID: 8300000, guid: 2741882324249254098ae12543bd7a70, type: 3}
   _gameOverClip: {fileID: 8300000, guid: 882cf6df957ec3c4896b757b80cd8771, type: 3}
-  _placeBlockClip: {fileID: 8300000, guid: 346b554d91dc0cd459e99b4f36f6523f, type: 3}
+  _placeBlockClips:
+  - {fileID: 8300000, guid: 54b6c3fedb9afa74fbe6e08b0c58a190, type: 3}
+  - {fileID: 8300000, guid: 95f09bdfd4c891e4bb9b17babff82d41, type: 3}
+  - {fileID: 8300000, guid: b90f04f3bb7db4f45b84056789c6eefb, type: 3}
   _cellsClearedClips:
   - {fileID: 8300000, guid: 165f58538277c29409ee745079aef8d7, type: 3}
   - {fileID: 8300000, guid: cc1fe593d7cc4a2488726f954fcff6f0, type: 3}
@@ -7335,9 +7350,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 910688723}
+  - {fileID: 328295398}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2102618485
 GameObject:

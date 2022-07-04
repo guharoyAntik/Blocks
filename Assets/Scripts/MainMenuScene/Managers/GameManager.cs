@@ -39,21 +39,28 @@ public class GameManager : MonoBehaviour
     public async void MainMenu()
     {
         await FadeIn();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
         await FadeOut();
     }
 
     public async void SettingsMenu()
     {
         await FadeIn();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("SettingsMenu");
+        await FadeOut();
+    }
+
+    public async void HowToPlayMenu()
+    {
+        await FadeIn();
+        SceneManager.LoadScene("HowToPlayMenu");
         await FadeOut();
     }
 
     public async void PlayGame()
     {
         await FadeIn();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("GameScene");
         await FadeOut();
     }
     #endregion

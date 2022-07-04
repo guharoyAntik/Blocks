@@ -28,8 +28,12 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Clips")]
     [SerializeField] private AudioClip _buttonClickClip;
     [SerializeField] private AudioClip _gameOverClip;
-    [SerializeField] private AudioClip _placeBlockClip;
+    [SerializeField] private AudioClip[] _placeBlockClips;
     [SerializeField] private AudioClip[] _cellsClearedClips;
+
+    /////////////////////////////////////////////////
+
+    private int _placeBlockClipIndex;
 
     private void Awake()
     {
@@ -48,9 +52,9 @@ public class SoundManager : MonoBehaviour
             SoundsEnabled = true;
         }
 
+        _placeBlockClipIndex = 0;
+
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(_uiSounds.gameObject);
-        DontDestroyOnLoad(_gameSounds.gameObject);
     }
 
     #region UI Sounds
@@ -81,8 +85,11 @@ public class SoundManager : MonoBehaviour
     {
         if (_soundsEnabled)
         {
-            _gameSounds.clip = _placeBlockClip;
+            _gameSounds.clip = _placeBlockClips[_placeBlockClipIndex];
+            _placeBlockClipIndex = Random.Range(0, _placeBlockClips.Length);
+            _gameSounds.volume = 0.5f;
             _gameSounds.Play();
+            _gameSounds.volume = 1f;
         }
     }
 

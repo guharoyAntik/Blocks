@@ -38,8 +38,6 @@ public class Block : MonoBehaviour
         if (_isBeingHeld == true)
         {
             Vector3 mousePos = GetMousePosition();
-
-            // transform.position = new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY, 0);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(mousePos.x - _mouseStartPosX, mousePos.y - _mouseStartPosY + 0.25f, 0), 100f * Time.deltaTime);
         }
     }

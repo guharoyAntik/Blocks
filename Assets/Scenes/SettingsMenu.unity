@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SOUNDS OFF
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -207,13 +207,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -540,7 +540,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 600}
+  m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660512054
 MonoBehaviour:
@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 1231167310}
   - component: {fileID: 1231167309}
   - component: {fileID: 1231167308}
+  - component: {fileID: 1231167311}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -831,19 +832,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1231167309}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1242076224}
-        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
-        m_MethodName: OpenMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1231167309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +871,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231167306}
   m_CullTransparentMesh: 1
+--- !u!114 &1231167311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231167306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eff8b31c2e6f6c4bb4d36abc847d9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1242076223
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,8 +988,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: REMOVE ADS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
-  m_sharedMaterial: {fileID: -3595711588419963357, guid: f175c138ee6959a41a6701ea00e3033d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
+  m_sharedMaterial: {fileID: -6404712841727610518, guid: 3d2e4e5b7374852408204b20b6be54a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1012,13 +1013,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56
-  m_fontSizeBase: 56
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

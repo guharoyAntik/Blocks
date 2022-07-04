@@ -17,6 +17,12 @@ public class MainMenuUIManager : MonoBehaviour
         GameManager.Instance.SettingsMenu();
     }
 
+    public void OpenHowToPlayMenu()
+    {
+        SoundManager.Instance.PlayButtonClickSound();
+        GameManager.Instance.HowToPlayMenu();
+    }
+
     public void ExitGame()
     {
         SoundManager.Instance.PlayButtonClickSound();
